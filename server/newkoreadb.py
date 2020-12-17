@@ -57,9 +57,7 @@ df['완치자 수']=(df.clear_cnt-df.clear_cnt.shift()).fillna(0)
 df['acc_cnt']=df['acc_cnt'].astype(object)
 df['death_cnt']=df['death_cnt'].astype(object)
 df['clear_cnt']=df['clear_cnt'].astype(object)
-
-df = df.drop(index=6)
-
+print(df)
 # print(df)
 def create_db():
     con = sqlite3.connect(DB_PATH + '/newkorea.db')
