@@ -51,20 +51,22 @@ df=df.sort_values(by='Date', ascending=True)
 df['acc_cnt']=df['acc_cnt'].astype(int)
 df['death_cnt']=df['death_cnt'].astype(int)
 df['clear_cnt']=df['clear_cnt'].astype(int)
+df = df.drop_duplicates(['Date'], keep="last")
+
 df['확진자 수']=(df.acc_cnt-df.acc_cnt.shift()).fillna(0)
 df['사망자 수']=(df.death_cnt-df.death_cnt.shift()).fillna(0)
 df['완치자 수']=(df.clear_cnt-df.clear_cnt.shift()).fillna(0)
 df['acc_cnt']=df['acc_cnt'].astype(object)
 df['death_cnt']=df['death_cnt'].astype(object)
 df['clear_cnt']=df['clear_cnt'].astype(object)
-df.drop_duplicates(["Date"])
+
 print(df)
-# print(df)
+
 def create_db():
     con = sqlite3.connect(DB_PATH + '/newkorea.db')
     cursor = con.cursor()
     # Date 날짜 acc 누적확진자 clear_a 완치자 care_a 치료중 death_a 사망누적 con 확진자 death 사망
-    cursor.execute("CREATE TABLE korea(Date text unique, acc text, clear_a int, care_a int, death_a text, con int, death int, clear int)")
+    cursor.execute("CREATE TABLE korea(Date text, acc text, clear_a int, care_a int, death_a text, con int, death int, clear int)")
     con.commit()
     con.close()
 
@@ -92,3 +94,5 @@ def krefresh_db():
 def newkupdater(): # 업데이트 함수
     krefresh_db() # 디비 clean
     input_db() # 다시 7개 넣기(일주일치)
+
+# newkupdater()
