@@ -57,6 +57,7 @@ df['완치자 수']=(df.clear_cnt-df.clear_cnt.shift()).fillna(0)
 df['acc_cnt']=df['acc_cnt'].astype(object)
 df['death_cnt']=df['death_cnt'].astype(object)
 df['clear_cnt']=df['clear_cnt'].astype(object)
+df.drop_duplicates(["Date"])
 print(df)
 # print(df)
 def create_db():
