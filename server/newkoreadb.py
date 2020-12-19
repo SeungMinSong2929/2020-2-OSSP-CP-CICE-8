@@ -63,14 +63,14 @@ def create_db():
     con = sqlite3.connect(DB_PATH + '/newkorea.db')
     cursor = con.cursor()
     # Date 날짜 acc 누적확진자 clear_a 완치자 care_a 치료중 death_a 사망누적 con 확진자 death 사망
-    cursor.execute("CREATE TABLE korea(Date text, acc text, clear_a int, care_a int, death_a text, con int, death int, clear int)")
+    cursor.execute("CREATE TABLE korea(Date text unique, acc text, clear_a int, care_a int, death_a text, con int, death int, clear int)")
     con.commit()
     con.close()
 
 def input_db():
     con = sqlite3.connect(DB_PATH + '/newkorea.db')
     cursor = con.cursor()
-    length1 = df.shape[0] - 1  # 9개 행 중 8개 행만 추출하기 위해
+    length1 = df.shape[0] # 9개 행 중 8개 행만 추출하기 위해
     length2 = df.shape[1]
     for i in range(length1):
         row = []
