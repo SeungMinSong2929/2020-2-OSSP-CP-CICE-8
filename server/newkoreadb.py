@@ -70,7 +70,7 @@ def create_db():
 def input_db():
     con = sqlite3.connect(DB_PATH + '/newkorea.db')
     cursor = con.cursor()
-    length1 = df.shape[0]
+    length1 = df.shape[0] - 1  # 9개 행 중 8개 행만 추출하기 위해
     length2 = df.shape[1]
     for i in range(length1):
         row = []
