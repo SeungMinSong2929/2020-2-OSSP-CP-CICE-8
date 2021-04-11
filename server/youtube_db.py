@@ -24,6 +24,7 @@ def yrefresh_db():
     con.close()
 
 
+# 키는 보안을 위해 지움
 def crawl_tube():
     youtube_key = "AIzaSyDgTuKL86WcF3uS6b6gBWEUoaUdd_cAOOA"
     news_num = 5
